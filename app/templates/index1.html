@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Testing</title>
+</head>
+<body>
+{% with messages = get_flashed_messages() %}
+   {% if messages %}
+      {% for message in messages %}
+         {{ message }}
+      {% endfor %}
+   {% endif %}
+{% endwith %}
+<form action="/post" method="post">
+{{obj.ques}}
+<input type="hidden" name="Question" value={{obj.q_id}} />
+{%for i in obj.ans%}
+<br><input type="radio" value={{i.replace(" ","_",10)}} name="Answer" />
+<label>{{i}}</label>
+{%endfor%}<br>
+<input type="submit" value="Submit" />
+</form>
+</body>
+</html>

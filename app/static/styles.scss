@@ -1,0 +1,127 @@
+
+html { font-size: 16px; }
+
+body { background-color: #181818; }
+
+
+#pen-title,
+#pen-description {
+	position: fixed;
+	top: 40%;
+	left: 50%;
+	z-index: 0;
+	color: #484848;
+}
+
+#pen-title {
+	transform: translate(-50%, -125%);
+	font-size: 2rem;
+	text-transform: uppercase;
+}
+
+#pen-description {
+	transform: translate(-50%, 125%);
+	font-size: 1.125rem;
+}
+
+
+// Hide cards' checkboxes
+
+.card-checkbox { display: none; }
+
+
+// Cards
+
+.card {
+	$width: 640px;
+	$height: $width * 0.67;
+	
+	box-sizing: border-box;
+	position: fixed;
+	top: 85%;
+	left: 50%;
+	width: $width;
+	height: $height;
+	margin-left: -$width / 2;
+	padding: 1rem;
+	transform: rotate(-2deg);
+	z-index: 0;
+	background-color: #ddd;
+	color: #181818;
+	box-shadow: 0 0 16px rgba(0,0,0,.25);
+	transition: all .75s;
+}
+
+
+// Card deck
+
+%first-card-in-deck {
+	transform: rotate(2deg);
+	z-index: 2;
+	background-color: #fff;
+}
+
+%second-card-in-deck {
+	z-index: 1;
+	transform: rotate(0);
+	background-color: #eee;
+}
+
+.card-checkbox:first-of-type + .card {
+	@extend %first-card-in-deck;
+}
+
+.card-checkbox:nth-of-type(2) + .card {
+	@extend %second-card-in-deck;
+}
+
+
+// Active card
+
+.card-checkbox:checked + .card {
+	margin-top: -240px;
+	transform: rotate(0);
+	top: 50%;
+	background-color: #fff;
+}
+
+
+// Modify deck when certain cards are active so that the deck looks always the same (except if there isn't enough cards)
+
+.card-checkbox:first-of-type:checked ~ .card-checkbox:nth-of-type(2) + .card {
+	@extend %first-card-in-deck;
+}
+
+.card-checkbox:first-of-type:checked ~ .card-checkbox:nth-of-type(3) + .card {
+	@extend %second-card-in-deck;
+}
+
+.card-checkbox:nth-of-type(2):checked ~ .card-checkbox:nth-of-type(3) + .card {
+	@extend %second-card-in-deck;
+}
+
+
+// Navigation
+
+#nav {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	padding-left: 0;
+	list-style: none;
+	font-size: .95rem;
+	color: #686868;
+	
+	li:not(.lowercase) { text-transform: uppercase; }
+	
+	label {
+		display: block;
+		padding: .75rem 1.25rem;
+		cursor: pointer;
+		transition: color .25s;
+		
+		&:hover {
+			color: #f8f8f8;
+		}
+	}
+}

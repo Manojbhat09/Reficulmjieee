@@ -1,0 +1,142 @@
+@font-face{
+  font-family: mont;
+  src: url("Montserrat-Regular.ttf");
+}
+
+
+html {
+	font-size: 16px;
+}
+
+body {
+	background-color: white;
+	margin:0;
+	font-family: mont !important;
+}
+
+#pen-title,
+#pen-description {
+	position: fixed;
+	top: 40%;
+	left: 50%;
+	z-index: 0;
+	color: #484848;
+}
+
+#pen-title {
+	transform: translate(-50%, -125%);
+	font-size: 2rem;
+	text-transform: uppercase;
+}
+
+#pen-description {
+	transform: translate(-50%, 125%);
+	font-size: 1.125rem;
+}
+
+.card-checkbox {
+	display: none;
+}
+
+.card {
+	z-index: 100  !important;
+	box-sizing: border-box;
+	position: fixed;
+	top: 85%;
+	left: 50%;
+	width: 640px;
+	height: 428.8px;
+	margin-left: -320px;
+	padding: 1rem;
+	transform: rotate(-2deg);
+	z-index: 0;
+	background-color: #ddd;
+	color: #181818;
+	box-shadow: 0 0 16px rgba(0, 0, 0, 0.25);
+	transition: all .75s;
+	text-align:center; 
+	display: inline-block; 
+	z-index:100 !important;
+}
+
+.card-box{
+	padding-top: 80px;
+}
+
+.card-checkbox:first-of-type + .card, .card-checkbox:first-of-type:checked ~ .card-checkbox:nth-of-type(2) + .card {
+	transform: rotate(2deg);
+	z-index: 2;
+	background-color: #fff;
+}
+
+.card-checkbox:nth-of-type(2) + .card, .card-checkbox:first-of-type:checked ~ .card-checkbox:nth-of-type(3) + .card, .card-checkbox:nth-of-type(2):checked ~ .card-checkbox:nth-of-type(3) + .card {
+	z-index: 1;
+	transform: rotate(0);
+	background-color: #eee;
+}
+
+.card-checkbox:checked + .card {
+	margin-top: -240px;
+	transform: rotate(0);
+	top: 50%;
+	background-color: #fff;
+}
+
+#nav {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	padding-left: 0;
+	list-style: none;
+	font-size: .95rem;
+	color: #000000;
+}
+
+#nav li:not(.lowercase) {
+	text-transform: uppercase;
+}
+
+#nav label {
+	display: block;
+	padding: .75rem 1.25rem;
+	cursor: pointer;
+	transition: color .25s;
+
+}
+
+#nav label:hover {
+	color: #f8f8f8;
+}
+.submit{
+	margin-top: 20px;
+}
+
+
+#particles-js {
+	z-index: 10;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    background-image: url("");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+}
+
+#gradient
+{
+  width: 100%;
+  height: 800px;
+  padding: 0px;
+  margin: 0px;
+}
+
+/*
+ [231,76,60], /*red*/
+  [46, 204, 113], /*green*/
+  [255,35,98], /*pink*/
+  [26,188,156], /*blue*/
+  [155,89,182], /*purple*/
+  [230,126,34]); /*orange
+*/ 
