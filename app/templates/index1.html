@@ -2,6 +2,14 @@
 <html>
 <head>
 	<title>Testing</title>
+	<script type="text/javascript" src="../static/jquery.min.js"></script>
+	<script type="text/javascript">
+$(document).ready(function(){
+	var getQ = $.get("/questionmaker",function(data){
+		$("#place").html(data);
+	});
+});
+	</script>
 </head>
 <body>
 {% with messages = get_flashed_messages() %}
@@ -11,14 +19,35 @@
       {% endfor %}
    {% endif %}
 {% endwith %}
-<form action="/post" method="post">
-{{obj.ques}}
-<input type="hidden" name="Question" value={{obj.q_id}} />
-{%for i in obj.ans%}
-<br><input type="radio" value={{i.replace(" ","_",10)}} name="Answer" />
-<label>{{i}}</label>
-{%endfor%}<br>
-<input type="submit" value="Submit" />
-</form>
+<div id="place">
+</div>
+<input id="send" type="submit" name="submit">
+<button id="next">Next Question</button>
+<script type="text/javascript">
+$(document).ready(function(){
+$("#send").click(function(){
+	var formdata = {
+		q_id:$("#Question").val(),
+		answer:$("input[type='radio']:checked").val()
+	}
+	$.ajax({
+		type:"POST",
+		url:"/post",
+		contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+		// json_string:JSON.stringify(formdata,null,'\t')
+		data:formdata,
+		success:function(result){
+			$("#place").css("background-color",result.color);
+		}});
+	return false;	
+	});
+$("#next").click(function(e){
+	$.get("/questionmaker",function(data){
+		$("#place").html(data);
+		$("#place").css('background-color','white');
+	});
+});
+});
+</script>
 </body>
 </html>
