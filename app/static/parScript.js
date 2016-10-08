@@ -3,6 +3,7 @@
 
 
 /*particls*/
+
 particlesJS("particles-js", {
     "particles": {
         "number": {

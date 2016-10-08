@@ -1,0 +1,22 @@
+<div class="card-box-info">
+		<div class="box-text">
+			<p>Leaderboard</p>
+		</div>
+		<div class="box-details">
+			<table>
+
+			  <tr>
+			    <th>Rank</th>
+			   	<th>Name</th>
+			   	<th>Points</th>
+			  </tr>
+			  {%for u in obj%}
+			  <tr>
+			  	<td>{{loop.index}}</td>
+			    <td>{{u.username}}</td>
+			    <td>{{u.marks}}</td>
+			  </tr>
+			  {%endfor%}
+			</table>
+		</div>
+	</div>

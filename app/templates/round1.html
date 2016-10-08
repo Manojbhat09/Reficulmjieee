@@ -1,3 +1,23 @@
 {{obj.ques}}
 <input type="hidden" id="Question" value={{obj.q_id}} />
 <input type="text" id="answer" name="answer" /> 
+<button id="send">Submit</button>		
+<script type="text/javascript">
+	$("#send").on("click",function(){
+		console.log("Here");
+	var formdata = {
+		q_id:$("#Question").val(),
+		answer:$("#answer").val()
+	}
+	$.ajax({
+		type:"POST",
+		url:"/post",
+		contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+		// json_string:JSON.stringify(formdata,null,'\t')
+		data:formdata,
+		success:function(result){
+			$(".card-box").css("background-color",result.color);
+		}});
+	return false;	
+	});
+</script>

@@ -131,6 +131,57 @@ body {
   padding: 0px;
   margin: 0px;
 }
+.leader-card *{
+	box-sizing: border-box;
+}
+.leader-card{
+
+	z-index: 200;
+	position: absolute;
+	width: 20%;
+	height: 60%;
+	background-color: white;
+	left: 3%;
+	top:5%;
+}
+.card-box-info{
+	margin: 5%;
+	height: 90%;
+	
+}
+.box-text{
+	margin-top: 5%;
+	font-size: 20px;
+	padding-left: 25px;
+}
+.box-details{
+	margin: 5%;
+	height: 90%;
+	width: 90%;
+	padding:15px;
+	overflow-y: scroll;
+}
+table{
+	border-collapse: collapse;
+	width: 100%;
+	
+}
+td,th{
+	height: 30px;
+	text-align: left;
+	width: 61px;
+	word-break: break-all;
+	padding-top: 7px;
+}
+td{
+	font-size: 15px;
+}
+.rule-card{
+	left:0; right: 0;
+	left: 77.1%;
+	
+}
+
 
 /*
  [231,76,60], /*red*/

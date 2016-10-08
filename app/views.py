@@ -79,7 +79,10 @@ def register():
 		return render_template("register.html")
 	else:
 		return redirect("/")
-
+@app.route("/getleader",methods=['GET','POST'])
+def getleaderboard():
+	u = db_session.execute("SELECT username,marks FROM user ORDER BY marks DESC");
+	return render_template("leaderboard.html",obj=u)
 @app.route("/logout",methods=['GET','POST'])
 def logout():
 	if 'username' in session:
@@ -92,7 +95,7 @@ def index():
 	if session.get('username') == None:
 		return redirect("/login")
 	if session['level'] == 1:
-		return render_template("index.html")
+		return render_template("home.html")
 	elif session['level'] ==2:
 		return render_template("index1.html")
 
@@ -116,11 +119,10 @@ def checkr():
 				session.pop('marks')
 				return jsonify(color="red")
 		elif(session['level']==1):
+			print "########"
 			ans = Answer.query.filter(Answer.answer == request.form['answer'] and Answer.q_id == request.form['q_id']).first()
 			if ans.is_correct:
 				user = User.query.filter(User.username == session['username']).first()
-				user.q_solved = user.q_solved+1
-				session['q_solved']=user.q_solved
 				user.marks  =user.marks+ session['marks']
 				if user.marks > 15:
 					user.level=user.level+1
