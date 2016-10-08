@@ -14,7 +14,6 @@ class User(base):
 	email = Column(String(256),nullable=False,unique=True)
 	level = Column(Integer(2))
 	marks = Column(Integer(5))
-	q_solved = Column(Integer(3))
 
 	def __init__(self,username=None,password=None,email=None):
 		self.id = ''.join(choice('0123456789') for i in range(10))

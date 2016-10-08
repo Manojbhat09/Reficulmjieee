@@ -50,7 +50,6 @@ def login():
 			u = User.query.filter(User.email == email).first()
 			if u:
 				if u.check_pass(password):
-					session['q_solved']=u.q_solved
 					session['level'] = u.level
 					session['username'] = u.username
 					return redirect("/")
