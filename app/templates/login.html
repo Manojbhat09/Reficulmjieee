@@ -2,15 +2,25 @@
 <html>
 <head>
 	<title>Registration</title>
+	<link rel="stylesheet" type="text/css" href="../static/reg.css">
 </head>
 <body>
 {%if error%}
 {{error}}
 {%endif%}
-<form name="login" id="loginForm" method="post">
-<input type="email" name="email" id="email" /><br>
-<input type="password" name="password" id=="password" /><br>
-<input type="submit" value="Submit" id="submit"/>
-</form>
+<div class="info">
+
+	<img src="energia.svg" style="height:100vh; position:absolute;z-index:0;">
+
+	<div class="details">
+		<h2 style="text-align:center;color:white;margin-top:90px">Login</h2>
+		<form name="login" id="loginForm" method="post">Email
+		<input type="email" name="email" id="email" /><br>Password
+		<input type="password" name="password" id=="password" /><br>
+		<input type="submit" value="Submit" id="submit"/>
+		</form>
+
+			</div>
+</div>
 </body>
 </html>
