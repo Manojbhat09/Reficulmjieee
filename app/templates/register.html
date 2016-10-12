@@ -8,13 +8,13 @@
 <div class="info">
 	<img src="energia.svg" style="height:100vh; position:absolute; z-index:0;">
 	<div class="details">
-		<form name="register" id="registrationForm" method="post">
+		<form name="register" id="registrationForm" method="post" onsubmit="return formValidation();">
 		<p>Username</p>
-		<input type="text" name="username" id="username" /><br>
+		<input type="text" name="username" id="username" required /><br>
 		<p>Password</p>
-		<input type="password" name="password" id=="password" /><br>
+		<input type="password" name="password" id=="password" required /><br>
 		<p>Email</p>
-		<input type="email" name="email" id="email" /><br>
+		<input type="email" name="email" id="email" required /><br>
 		<br>
 		<br>
 		<input type="submit" value="Submit" id="submit"/>
@@ -26,6 +26,120 @@
 
 	</div>
 </div>
+<script type="text/javascript">
+	    
 
+function formValidation()  
+    {  
+    var uid = document.register.userid;  
+    var passid = document.register.passid;  
+    var uname = document.register.username;  
+
+    var uemail = document.register.email;  
+    
+    if(passid_validation(passid,7,12))  
+    {  
+     
+    if(alphanumeric(uadd))  
+    {   
+     
+     
+    if(ValidateEmail(uemail))  
+    {  
+ 
+    }   
+     
+       
+     
+    }  
+    }  
+
+    return false;  
+      
+    } 
+
+
+
+
+    function userid_validation(uid,mx,my)  
+    {  
+    var uid_len = uid.value.length;  
+    if (uid_len == 0 || uid_len >= my || uid_len < mx)  
+    {  
+    alert("User Id should not be empty / length be between "+mx+" to "+my);  
+    uid.focus();  
+    return false;  
+    }  
+    return true;  
+    }  
+    function passid_validation(passid,mx,my)  
+    {  
+    var passid_len = passid.value.length;  
+    if (passid_len == 0 ||passid_len >= my || passid_len < mx)  
+    {  
+    alert("Password should not be empty / length be between "+mx+" to "+my);  
+    passid.focus();  
+    return false;  
+    }  
+    return true;  
+    }  
+    function allLetter(uname)  
+    {   
+    var letters = /^[A-Za-z]+$/;  
+    if(uname.value.match(letters))  
+    {  
+    return true;  
+    }  
+    else  
+    {  
+    alert('Username must have alphabet characters only');  
+    uname.focus();  
+    return false;  
+    }  
+    }  
+    function alphanumeric(uadd)  
+    {   
+    var letters = /^[0-9a-zA-Z]+$/;  
+    if(uadd.value.match(letters))  
+    {  
+    return true;  
+    }  
+    else  
+    {  
+    alert('User address must have alphanumeric characters only');  
+    uadd.focus();  
+    return false;  
+    }  
+    }  
+     
+    function allnumeric(uzip)  
+    {   
+    var numbers = /^[0-9]+$/;  
+    if(uzip.value.match(numbers))  
+    {  
+    return true;  
+    }  
+    else  
+    {  
+    alert('ZIP code must have numeric characters only');  
+    uzip.focus();  
+    return false;  
+    }  
+    }  
+    function ValidateEmail(uemail)  
+    {  
+    var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;  
+    if(uemail.value.match(mailformat))  
+    {  
+    return true;  
+    }  
+    else  
+    {  
+    alert("You have entered an invalid email address!");  
+    uemail.focus();  
+    return false;  
+    }  
+    }  
+</script>
 </body>
 </html>

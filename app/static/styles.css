@@ -183,11 +183,9 @@ td{
 }
 
 
-/*
- [231,76,60], /*red*/
-  [46, 204, 113], /*green*/
-  [255,35,98], /*pink*/
-  [26,188,156], /*blue*/
-  [155,89,182], /*purple*/
-  [230,126,34]); /*orange
-*/ 
+
+
+
+
+@media only screen and (max-device-width: 480px) {
+}

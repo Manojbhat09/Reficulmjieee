@@ -1,69 +1,40 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Registration</title>
-	<link rel="stylesheet" type="text/css" href="../static/reg.css">
-	<script type="text/javascript" src="../static/vali.js"></script>
-	<script type="text/javascript" src="../static/jquery.min.js"></script>
-</head>
-<body>
-{%if error%}
-{{error}}
-{%endif%}
-<div class="info">
-
-	<img src="energia.svg" style="height:100vh; position:absolute;z-index:0;">
-
-	<div class="details">
-		<h2 style="text-align:center;color:white;margin-top:90px">Login</h2>
-		<form name="login" id="loginForm" method="post" onsubmit="return formValidation();"><label for="email">Email:</label>
-
-		<input type="email" name="email" id="email"  name="email" size="30" required/><br>
-		<label for="password">Password:</label>
-		<input type="password" name="password" id=="password" size="12" required/><br>
-		<input type="submit" name="submit" value="Submit" id="submit"/>
-		</form>
-		<p class="vali" style="text-align:center;"></p>
-			</div>
-
-</div>
-
-<script type="text/javascript">
-	    
-
-function formValidation()  
+    function formValidation()  
     {  
-    var uid = document.login.userid;  
-    var passid = document.login.passid;  
-    var uname = document.login.username;  
-
-    var uemail = document.login.email;  
-    
+    var uid = document.registration.userid;  
+    var passid = document.registration.passid;  
+    var uname = document.registration.username;  
+    var uadd = document.registration.address;  
+    var ucountry = document.registration.country;  
+    var uzip = document.registration.zip;  
+    var uemail = document.registration.email;  
+    var umsex = document.registration.msex;  
+    var ufsex = document.registration.fsex; if(userid_validation(uid,5,12))  
+    {  
     if(passid_validation(passid,7,12))  
     {  
-     
+    if(allLetter(uname))  
+    {  
     if(alphanumeric(uadd))  
     {   
-     
-     
+    if(countryselect(ucountry))  
+    {  
+    if(allnumeric(uzip))  
+    {  
     if(ValidateEmail(uemail))  
     {  
- 
+    if(validsex(umsex,ufsex))  
+    {  
+    }  
     }   
-     
-       
-     
+    }  
+    }   
     }  
     }  
-
+    }  
+    }  
     return false;  
       
-    } 
-
-
-
-
-    function userid_validation(uid,mx,my)  
+    } function userid_validation(uid,mx,my)  
     {  
     var uid_len = uid.value.length;  
     if (uid_len == 0 || uid_len >= my || uid_len < mx)  
@@ -113,7 +84,19 @@ function formValidation()
     return false;  
     }  
     }  
-     
+    function countryselect(ucountry)  
+    {  
+    if(ucountry.value == "Default")  
+    {  
+    alert('Select your country from the list');  
+    ucountry.focus();  
+    return false;  
+    }  
+    else  
+    {  
+    return true;  
+    }  
+    }  
     function allnumeric(uzip)  
     {   
     var numbers = /^[0-9]+$/;  
@@ -141,7 +124,27 @@ function formValidation()
     uemail.focus();  
     return false;  
     }  
+    } function validsex(umsex,ufsex)  
+    {  
+    x=0;  
+      
+    if(umsex.checked)   
+    {  
+    x++;  
+    } if(ufsex.checked)  
+    {  
+    x++;   
     }  
-</script>
-</body>
-</html>
+    if(x==0)  
+    {  
+    alert('Select Male/Female');  
+    umsex.focus();  
+    return false;  
+    }  
+    else  
+    {  
+    alert('Form Succesfully Submitted');  
+    window.location.reload()  
+    return true;  
+    }  
+    }  
