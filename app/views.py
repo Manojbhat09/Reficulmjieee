@@ -94,22 +94,17 @@ def logout():
 def index():
 	if session.get('username') == None:
 		return redirect("/login")
-	if session['level'] == 1:
+	else:
 		return render_template("home.html")
-	elif session['level'] ==2:
-		return render_template("index1.html")
 
 @app.route("/post",methods=['GET','POST'])
 def checkr():
 	if request.method == "POST":
 		if (session['level']==2):
-			print request.form['answer']
 			ans = Answer.query.filter(Answer.answer == request.form['answer'].replace("_"," ",10) and Answer.q_id == request.form['q_id']).first()
 			print ans.is_correct
 			if ans.is_correct:
 				user = User.query.filter(User.username == session['username']).first()
-				user.q_solved = user.q_solved+1
-				session['q_solved']=user.q_solved
 				user.marks  =user.marks+ session['marks']
 				session.pop('marks')
 				db_session.add(user)
@@ -119,7 +114,6 @@ def checkr():
 				session.pop('marks')
 				return jsonify(color="red")
 		elif(session['level']==1):
-			print "########"
 			ans = Answer.query.filter(Answer.answer == request.form['answer'] and Answer.q_id == request.form['q_id']).first()
 			if ans.is_correct:
 				user = User.query.filter(User.username == session['username']).first()

@@ -27,10 +27,19 @@ $(document).ready(function(){
 <script type="text/javascript">
 $(document).ready(function(){
 $("#send").click(function(){
+	if($(".answer").attr('type')=='radio'){
+	var formdata = {
+		q_id:$("#Question").val(),
+		answer:$("input[type='radio']:checked").val()
+	}
+}
+	else if($(".answer").attr('type') == 'text'){
 	var formdata = {
 		q_id:$("#Question").val(),
 		answer:$("#answer").val()
 	}
+}
+console.log(formdata);
 	$.ajax({
 		type:"POST",
 		url:"/post",

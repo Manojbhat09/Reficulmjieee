@@ -1,6 +1,6 @@
 {{obj.ques}}
 <input type="hidden" id="Question" value={{obj.q_id}} />
 {%for i in obj.ans%}
-<br><input type="radio" value={{i.replace(" ","_",10)}} />
+<br><input class="answer" type="radio" value={{i.replace(" ","_",10)}} />
 <label>{{i}}</label>
 {%endfor%}<br>
