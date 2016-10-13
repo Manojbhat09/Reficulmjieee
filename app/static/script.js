@@ -4,20 +4,25 @@ if (screen.width <= 800) {
 var labelID;
 var random;
 
+
+
 $(document).ready(function(){
-	$('label').click(function() {
-		do
-		random = Math.floor(Math.random() * 4) + 1 
-		while (random <= 0)
-       {
+	$('label').click(function() {		
        	labelID = $(this).attr('for');
-       }
-       labelID = labelID+'-'+random;
-       $('#'+labelID).trigger('click');
+       
+        $('#'+labelID).trigger('click', function(){
+
+            if(booRadio == this){
+                this.checked = false;
+        booRadio = null;
+            }else{
+            booRadio = this;
+        }
+    });
+       
        $.get("/questionmaker",function(data){
-		$("#card-id-"+random).html(data);
-		$("#card-id"+random).append('<input type="submit" id="send" />')
-		$("#card-id-"+random).css('background-color','white');
+		$("#card-id-1").html(data);
+		$("#card-id-1").css('background-color','white');
 	});
    });
 	$("#send").click(function(){
@@ -33,7 +38,6 @@ $(document).ready(function(){
 		answer:$("#answer").val()
 	}
 }
-console.log(formdata);
 	$.ajax({
 		type:"POST",
 		url:"/post",
@@ -41,7 +45,13 @@ console.log(formdata);
 		// json_string:JSON.stringify(formdata,null,'\t')
 		data:formdata,
 		success:function(result){
-			$(".card-box").css("background-color",result.color);
+			$("#place").css("background-color",result.color);
+			if(result.color == "green"){
+		$.get("/questionmaker",function(data){
+		$("#card-id-1").html(data);
+		$("#card-id-1").css('background-color','white');
+	});
+			}
 		}});
 	return false;	
 	});

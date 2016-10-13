@@ -6,7 +6,7 @@
 	<script type="text/javascript">
 $(document).ready(function(){
 	var getQ = $.get("/questionmaker",function(data){
-		$("#place").html(data);
+		$("#card-id-1").html(data);
 	});
 });
 	</script>
@@ -47,14 +47,14 @@ console.log(formdata);
 		// json_string:JSON.stringify(formdata,null,'\t')
 		data:formdata,
 		success:function(result){
-			$("#place").css("background-color",result.color);
+			$("#card-id-1").css("background-color",result.color);
 		}});
 	return false;	
 	});
 $("#next").click(function(e){
 	$.get("/questionmaker",function(data){
-		$("#place").html(data);
-		$("#place").css('background-color','white');
+		$("#card-id-1").html(data);
+		$("#card-id-1").css('background-color','white');
 	});
 });
 });

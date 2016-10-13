@@ -15,6 +15,7 @@ def close_db(exception):
 	db_session.close()
 @app.route("/questionmaker",methods=['GET','POST'])
 def questionmaker():
+	print "Get Question"
 	if (session['level'] == 2):
 		q={}
 		q = Question.query.filter(Question.level == session['level']).order_by(func.random()).first()
@@ -102,7 +103,6 @@ def checkr():
 	if request.method == "POST":
 		if (session['level']==2):
 			ans = Answer.query.filter(Answer.answer == request.form['answer'].replace("_"," ",10) and Answer.q_id == request.form['q_id']).first()
-			print ans.is_correct
 			if ans.is_correct:
 				user = User.query.filter(User.username == session['username']).first()
 				user.marks  =user.marks+ session['marks']
@@ -118,10 +118,11 @@ def checkr():
 			if ans.is_correct:
 				user = User.query.filter(User.username == session['username']).first()
 				user.marks  =user.marks+ session['marks']
-				if user.marks > 15:
+				if user.marks > 30:
 					user.level=user.level+1
 					session['level'] = user.level
 				session.pop('marks')
+				print "##############################"
 				db_session.add(user)
 				db_session.commit()
 				return jsonify(color="green")

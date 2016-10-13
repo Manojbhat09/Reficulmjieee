@@ -34,7 +34,8 @@
 	<!-- <li class="lowercase"><label for="put-cards-down">(Put cards down)</label></li> -->
 	<!-- <li><label for="toggle-card-1">First card</label></li> -->
 	
-	<li><label for="toggle-card"> Next card </label></li>
+	<li><label for="toggle"><a href="/logout">Logout</a></label></li>
+	<li><label for="toggle-card-1" > Toggle </label></li>
 	<li><label for="toggle-card-5"> Close All </label></li>
 </ul>
 
@@ -54,31 +55,6 @@
     <input type="submit" id="send" value="Submit" />
 </div>
 
-
-<input type="radio" name="cards" class="card-checkbox" id="toggle-card-2">
-<div class="card">
-	<div class="card-box" id="card-id-2">
-		
-			    
-    </div>
-    <input type="submit" id="send" value="Submit" />
-</div>
-<input type="radio" name="cards" class="card-checkbox" id="toggle-card-3">
-<div class="card">
-	<div class="card-box" id="card-id-3">
-		
-			    
-    </div>
-    <input type="submit" id="send" value="Submit" />
-</div>
-<input type="radio" name="cards" class="card-checkbox" id="toggle-card-4">
-<div class="card">
-	<div class="card-box" id="card-id-4">
-		
-	    
-    </div>
-    <input type="submit" id="send" value="Submit" />	
-</div>
 <input type="radio" name="cards" class="card-checkbox" id="toggle-card-5"> <!-- put cards down-->
 <!-- </div> -->
 
@@ -111,36 +87,9 @@
 	<script type="text/javascript" src="../static/script.js"></script>
 
 <script type="text/javascript">
-// $(document).ready(function(){
-// 	$.get("/getleader",function(data){
-// 		$("#leader-board").html(data);
-// 	});
-// 	$("#send").click(function(e){
-// 		console.log("Here");
-// 	});
-// });
-
-
 $(document).ready(function(){
 	$.get("/getleader",function(data){
 		$("#leader-board").html(data);
-	});
-	$("#send").on("click",function(){
-		console.log("Here");
-	var formdata = {
-		q_id:$("#Question").val(),
-		answer:$("#answer").val()
-	}
-	$.ajax({
-		type:"POST",
-		url:"/post",
-		contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-		// json_string:JSON.stringify(formdata,null,'\t')
-		data:formdata,
-		success:function(result){
-			$(".card-box").css("background-color",result.color);
-		}});
-	return false;	
 	});
 });
 </script>
