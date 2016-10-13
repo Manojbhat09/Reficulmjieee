@@ -94,6 +94,13 @@
 		</div>
 		<div class="box-details two">
 			
+1.Questions with choice have only 1 trail answering them.
+2.Questions having no options have to be answered till it is right.
+3.If the answer is in Numbers write the answer in Numbers only unless specified.
+4.The answers are Case insensitive.
+5.Answer the questions without the units unless specified to write.
+6.The event is of 3 rounds running till the end of tech tatva.
+	
 		</div>
 	</div>
 </div>
@@ -104,12 +111,36 @@
 	<script type="text/javascript" src="../static/script.js"></script>
 
 <script type="text/javascript">
+// $(document).ready(function(){
+// 	$.get("/getleader",function(data){
+// 		$("#leader-board").html(data);
+// 	});
+// 	$("#send").click(function(e){
+// 		console.log("Here");
+// 	});
+// });
+
+
 $(document).ready(function(){
 	$.get("/getleader",function(data){
 		$("#leader-board").html(data);
 	});
-	$("#send").click(function(e){
+	$("#send").on("click",function(){
 		console.log("Here");
+	var formdata = {
+		q_id:$("#Question").val(),
+		answer:$("#answer").val()
+	}
+	$.ajax({
+		type:"POST",
+		url:"/post",
+		contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+		// json_string:JSON.stringify(formdata,null,'\t')
+		data:formdata,
+		success:function(result){
+			$(".card-box").css("background-color",result.color);
+		}});
+	return false;	
 	});
 });
 </script>
